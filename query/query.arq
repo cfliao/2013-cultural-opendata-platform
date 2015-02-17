@@ -1,0 +1,37 @@
+
+SELECT * WHERE {?x a <http://cloud.culture.tw/resources/Event>}
+
+SELECT ?x ?y WHERE {
+?x a :EventInstance.  
+?x :location ?y.
+}
+
+SELECT ?z WHERE {
+?x :id "516da059cfa33ef4497ce795".
+?x :eventInstances ?y.
+?z rdfs:member ?y.
+}
+
+---- Query over a collection
+prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> 
+prefix : <http://cloud.culture.tw/resources/> 
+prefix xsd:   <http://www.w3.org/2001/XMLSchema#> 
+
+SELECT ?anEventInstance ?time ?location WHERE {
+?event :id "51a3ae27cfa3fd2a6057271f"^^xsd:string.
+?event :eventInstances ?eventInstances.
+?eventInstances rdfs:member ?anEventInstance.
+?anEventInstance :time ?time.
+?anEventInstance :location ?location.
+}
+
+<div class="opentop_end"><table width=400><tr><td></td></tr></table> </div>
+--
+prefix xsd:   <http://www.w3.org/2001/XMLSchema#> 
+prefix :  <http://cloud.culture.tw/resources/>
+
+SELECT ?event ?title WHERE {
+?event  a :Event.
+?event  :title ?title.
+?event  :category "1"^^xsd:string.
+}
